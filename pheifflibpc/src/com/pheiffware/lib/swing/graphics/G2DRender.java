@@ -34,6 +34,10 @@ public class G2DRender
 		{
 			((G2DRenderable) object).render(g2d);
 		}
+		else if (object instanceof Vec3D)
+		{
+			renderO(g2d, (Vec3D) object);
+		}
 		else if (object instanceof Rect)
 		{
 			renderO(g2d, (Rect) object);
@@ -58,6 +62,11 @@ public class G2DRender
 		{
 			renderO(g2d, (PolygonEntity) object);
 		}
+	}
+
+	private static void renderO(G2D g2d, Vec3D point)
+	{
+		g2d.drawPoint(point);
 	}
 
 	private static void renderO(G2D g2d, Sphere sphere)
@@ -94,8 +103,7 @@ public class G2DRender
 
 		g2d.drawLine(lineSegment);
 		Vec3D center = Vec3D.average(p1, p2);
-		Vec3D normalEndPoint = Vec3D
-				.add(center, Vec3D.scale(unitNormal, 10.0f));
+		Vec3D normalEndPoint = Vec3D.add(center, Vec3D.scale(unitNormal, 10.0f));
 
 		g2d.drawLine(center, normalEndPoint);
 
@@ -107,8 +115,6 @@ public class G2DRender
 		{
 			g2d.drawLine(lineSegment);
 		}
-		g2d.drawOval(polygon.getBoundingSphere().getCenter().x, polygon
-				.getBoundingSphere().getCenter().y, polygon.getBoundingSphere()
-				.getRadius());
+		g2d.drawOval(polygon.getBoundingSphere().getCenter().x, polygon.getBoundingSphere().getCenter().y, polygon.getBoundingSphere().getRadius());
 	}
 }

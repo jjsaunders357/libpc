@@ -16,6 +16,9 @@ import com.pheiffware.lib.geometry.shapes.Sphere;
 
 public class G2D
 {
+	// When showing a point how big should it be?
+	private static final double pointSize = 4;
+
 	// When showing a directional arrow, how many pixels is it long?
 	private final double arrowLength = 15;
 	// When showing a directional arrow, how many pixels are the arrow lines
@@ -34,6 +37,11 @@ public class G2D
 		this.transform = transform;
 	}
 
+	public void drawPoint(Vec3D point)
+	{
+		g2d.drawOval((int) (transform.transX(point.x) - pointSize), (int) (transform.transY(point.y) - pointSize), (int) pointSize, (int) pointSize);
+	}
+
 	public final void drawLine(LineSegment lineSegment)
 	{
 		drawLine(lineSegment.p1, lineSegment.p2);
@@ -46,8 +54,7 @@ public class G2D
 
 	public final void drawLine(double x1, double y1, double x2, double y2)
 	{
-		g2d.drawLine(transform.transX(x1), transform.transY(y1),
-				transform.transX(x2), transform.transY(y2));
+		g2d.drawLine(transform.transX(x1), transform.transY(y1), transform.transX(x2), transform.transY(y2));
 	}
 
 	public void drawArrow(LineSegment lineSegment)
@@ -57,10 +64,8 @@ public class G2D
 
 	public void drawArrowAboluteLength(Vec3D p1, double angleInRadians)
 	{
-		Vec3D p2 = new Vec3D(p1.x + Math.cos(angleInRadians) * arrowLength
-				/ transform.scaleRenderableToWindowX, p1.y
-				+ Math.sin(angleInRadians) * arrowLength
-				/ transform.scaleRenderableToWindowY, p1.z);
+		Vec3D p2 = new Vec3D(p1.x + Math.cos(angleInRadians) * arrowLength / transform.scaleRenderableToWindowX, p1.y + Math.sin(angleInRadians)
+				* arrowLength / transform.scaleRenderableToWindowY, p1.z);
 		drawArrow(p1, p2);
 	}
 
@@ -85,9 +90,7 @@ public class G2D
 
 	public final void fillRect(Rect rect)
 	{
-		g2d.fillRect(transform.transX(rect.x1), transform.transY(rect.y1),
-				transform.transWidth(rect.width),
-				transform.transHeight(rect.height));
+		g2d.fillRect(transform.transX(rect.x1), transform.transY(rect.y1), transform.transWidth(rect.width), transform.transHeight(rect.height));
 	}
 
 	public final void fillOval(Sphere sphere)
@@ -102,16 +105,12 @@ public class G2D
 
 	public final void fillOval(double x, double y, double radius)
 	{
-		g2d.fillOval(transform.transX(x - radius),
-				transform.transY(y - radius), transform.transWidth(radius * 2),
-				transform.transHeight(radius * 2));
+		g2d.fillOval(transform.transX(x - radius), transform.transY(y - radius), transform.transWidth(radius * 2), transform.transHeight(radius * 2));
 	}
 
 	public final void drawOval(double x, double y, double radius)
 	{
-		g2d.drawOval(transform.transX(x - radius),
-				transform.transY(y - radius), transform.transWidth(radius * 2),
-				transform.transHeight(radius * 2));
+		g2d.drawOval(transform.transX(x - radius), transform.transY(y - radius), transform.transWidth(radius * 2), transform.transHeight(radius * 2));
 	}
 
 	public void fillRectAbsolute(int x, int y, int width, int height)
@@ -124,8 +123,7 @@ public class G2D
 		g2d.drawLine((int) p1.x, (int) p1.y, (int) p2.x, (int) p2.y);
 	}
 
-	public final void drawLineAbsolute(double x1, double y1, double x2,
-			double y2)
+	public final void drawLineAbsolute(double x1, double y1, double x2, double y2)
 	{
 		g2d.drawLine((int) x1, (int) y1, (int) x2, (int) y2);
 	}
