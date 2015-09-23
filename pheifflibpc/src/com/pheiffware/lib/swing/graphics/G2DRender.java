@@ -1,8 +1,8 @@
 package com.pheiffware.lib.swing.graphics;
 
 import com.pheiffware.lib.geometry.Vec3D;
+import com.pheiffware.lib.geometry.shapes.BaseLineSegment;
 import com.pheiffware.lib.geometry.shapes.LineSegment;
-import com.pheiffware.lib.geometry.shapes.OrientedLineSegment;
 import com.pheiffware.lib.geometry.shapes.Rect;
 import com.pheiffware.lib.geometry.shapes.Sphere;
 import com.pheiffware.lib.physics.entity.rigidBody.LineSegmentEntity;
@@ -42,9 +42,9 @@ public class G2DRender
 		{
 			renderO(g2d, (Rect) object);
 		}
-		else if (object instanceof LineSegment)
+		else if (object instanceof BaseLineSegment)
 		{
-			renderO(g2d, (LineSegment) object);
+			renderO(g2d, (BaseLineSegment) object);
 		}
 		else if (object instanceof Sphere)
 		{
@@ -74,7 +74,7 @@ public class G2DRender
 		g2d.fillOval(sphere);
 	}
 
-	private static void renderO(G2D g2d, LineSegment lineSegment)
+	private static void renderO(G2D g2d, BaseLineSegment lineSegment)
 	{
 		g2d.drawArrow(lineSegment);
 	}
@@ -95,7 +95,7 @@ public class G2DRender
 		g2d.fillOval(sphereEntity.sphere);
 	}
 
-	private static void renderO(G2D g2d, OrientedLineSegment lineSegment)
+	private static void renderO(G2D g2d, LineSegment lineSegment)
 	{
 		Vec3D p1 = lineSegment.p1;
 		Vec3D p2 = lineSegment.p2;
@@ -111,7 +111,7 @@ public class G2DRender
 
 	private static void renderO(G2D g2d, PolygonEntity polygon)
 	{
-		for (OrientedLineSegment lineSegment : polygon.getLineSegments())
+		for (LineSegment lineSegment : polygon.getLineSegments())
 		{
 			g2d.drawLine(lineSegment);
 		}

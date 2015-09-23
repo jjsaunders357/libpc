@@ -10,7 +10,7 @@ import java.awt.Stroke;
 import java.util.Map;
 
 import com.pheiffware.lib.geometry.Vec3D;
-import com.pheiffware.lib.geometry.shapes.LineSegment;
+import com.pheiffware.lib.geometry.shapes.BaseLineSegment;
 import com.pheiffware.lib.geometry.shapes.Rect;
 import com.pheiffware.lib.geometry.shapes.Sphere;
 
@@ -42,7 +42,7 @@ public class G2D
 		g2d.drawOval((int) (transform.transX(point.x) - pointSize), (int) (transform.transY(point.y) - pointSize), (int) pointSize, (int) pointSize);
 	}
 
-	public final void drawLine(LineSegment lineSegment)
+	public final void drawLine(BaseLineSegment lineSegment)
 	{
 		drawLine(lineSegment.p1, lineSegment.p2);
 	}
@@ -57,9 +57,15 @@ public class G2D
 		g2d.drawLine(transform.transX(x1), transform.transY(y1), transform.transX(x2), transform.transY(y2));
 	}
 
-	public void drawArrow(LineSegment lineSegment)
+	public void drawArrow(BaseLineSegment lineSegment)
 	{
 		drawArrow(lineSegment.p1, lineSegment.p2);
+	}
+
+	public void drawArrow(Vec3D p1, Vec3D direction, double length)
+	{
+		Vec3D p2 = Vec3D.add(p1, Vec3D.scale(direction, length));
+		drawArrow(p1, p2);
 	}
 
 	public void drawArrowAboluteLength(Vec3D p1, double angleInRadians)
