@@ -1,7 +1,7 @@
 package com.pheiffware.lib.swing.graphics;
 
 import com.pheiffware.lib.geometry.Vec3D;
-import com.pheiffware.lib.geometry.shapes.BaseLineSegment;
+import com.pheiffware.lib.geometry.shapes.SimpleLineSegment;
 import com.pheiffware.lib.geometry.shapes.LineSegment;
 import com.pheiffware.lib.geometry.shapes.Rect;
 import com.pheiffware.lib.geometry.shapes.Sphere;
@@ -42,9 +42,9 @@ public class G2DRender
 		{
 			renderO(g2d, (Rect) object);
 		}
-		else if (object instanceof BaseLineSegment)
+		else if (object instanceof SimpleLineSegment)
 		{
-			renderO(g2d, (BaseLineSegment) object);
+			renderO(g2d, (SimpleLineSegment) object);
 		}
 		else if (object instanceof Sphere)
 		{
@@ -74,7 +74,7 @@ public class G2DRender
 		g2d.fillOval(sphere);
 	}
 
-	private static void renderO(G2D g2d, BaseLineSegment lineSegment)
+	private static void renderO(G2D g2d, SimpleLineSegment lineSegment)
 	{
 		g2d.drawArrow(lineSegment);
 	}
@@ -101,7 +101,7 @@ public class G2DRender
 		Vec3D p2 = lineSegment.p2;
 		Vec3D unitNormal = lineSegment.getUnitNormal();
 
-		g2d.drawLine(lineSegment);
+		g2d.drawLineSegment(lineSegment);
 		Vec3D center = Vec3D.average(p1, p2);
 		Vec3D normalEndPoint = Vec3D.add(center, Vec3D.scale(unitNormal, 10.0f));
 
@@ -113,7 +113,7 @@ public class G2DRender
 	{
 		for (LineSegment lineSegment : polygon.getLineSegments())
 		{
-			g2d.drawLine(lineSegment);
+			g2d.drawLineSegment(lineSegment);
 		}
 		g2d.drawOval(polygon.getBoundingSphere().getCenter().x, polygon.getBoundingSphere().getCenter().y, polygon.getBoundingSphere().getRadius());
 	}
