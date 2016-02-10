@@ -5,9 +5,9 @@ import com.pheiffware.lib.geometry.shapes.SimpleLineSegment;
 import com.pheiffware.lib.geometry.shapes.LineSegment;
 import com.pheiffware.lib.geometry.shapes.Rect;
 import com.pheiffware.lib.geometry.shapes.Sphere;
-import com.pheiffware.lib.physics.entity.rigidBody.LineSegmentEntity;
-import com.pheiffware.lib.physics.entity.rigidBody.PolygonEntity;
-import com.pheiffware.lib.physics.entity.rigidBody.SphereEntity;
+import com.pheiffware.lib.physics.entity.physicalEntity.entities.LineSegmentEntity;
+import com.pheiffware.lib.physics.entity.physicalEntity.entities.PolygonEntity;
+import com.pheiffware.lib.physics.entity.physicalEntity.entities.SphereEntity;
 
 /**
  * A bit of a hack class, this will lookup the data type of an object and if
